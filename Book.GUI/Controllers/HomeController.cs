@@ -1,4 +1,4 @@
-﻿using Book.GUI.Models;
+﻿using BookShop.GUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Book.GUI.Controllers
+namespace BookShop.GUI.Controllers
 {
     public class HomeController : Controller
     {

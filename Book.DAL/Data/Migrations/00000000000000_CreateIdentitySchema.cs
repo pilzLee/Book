@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Book.GUI.Data.Migrations
+namespace BookShop.GUI.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

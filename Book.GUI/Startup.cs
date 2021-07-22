@@ -1,4 +1,4 @@
-using Book.GUI.Data;
+using BookShop.GUI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Book.GUI
+namespace BookShop.GUI
 {
     public class Startup
     {
