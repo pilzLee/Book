@@ -1,14 +1,11 @@
-﻿using BookShop.GUI.Models;
+﻿using BookShop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace BookShop.GUI.Controllers
+namespace BookShop.GUI.Area.Admin.Controllers
 {
+    [Area("Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -15,9 +15,17 @@ namespace BookShop.DAL.Data
         {
             base.OnModelCreating(builder);
 
+
+
             //// Set composite key for OrderDetail.
             builder.Entity<OrderDetail>()
                 .HasKey(od => new { od.OrderId, od.BookId });
+
+            //builder.Entity<OrderDetail>()
+            //    .HasOne<Order>(o=>o.Order)
+            //    .WithMany(b=>b.Order)
+            //    .has
+
 
             //// Set composite key for BookGenre.
             builder.Entity<BookGenre>()

@@ -16,8 +16,8 @@ namespace BookShop.Models.ViewModels
         public int AvailableQuantity { get; set; }
         public string Description { get; set; }
         public Publisher Publisher { get; set; }
-        public IList<Order> Orders { get; set; }
-        public IList<Genre> Genres { get; set; }
-        public IList<Author> Authors { get; set; }
+        public IList<OrderDetail> OrderDetails { get; set; }
+        public IList<BookGenre> BookGenres { get; set; }
+        public IList<BookAuthor> BookAuthors { get; set; }
     }
 }
