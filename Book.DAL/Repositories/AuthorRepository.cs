@@ -15,11 +15,11 @@ namespace BookShop.DAL.Repositories
 
         public void Update(Author author)
         {
-            var item = _db.Genres.FirstOrDefault(g => g.Id == author.Id);
+            var item = _db.Authors.FirstOrDefault(g => g.Id == author.Id);
 
             if (item != null)
             {
-                item.Name = author.FullName;
+                item.FullName = author.FullName;
             }
 
         }

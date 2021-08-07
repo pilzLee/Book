@@ -11,6 +11,6 @@ namespace BookShop.Models.ViewModels
         [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public IList<OrderDetail> OrderDetails { get; set; }
+        public virtual IList<OrderDetail> OrderDetails { get; set; }
     }
 }

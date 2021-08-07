@@ -12,6 +12,6 @@ namespace BookShop.Models.ViewModels
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        public IList<BookGenre> BookGenres { get; set; }
+        public virtual IList<BookGenre> BookGenres { get; set; }
     }
 }

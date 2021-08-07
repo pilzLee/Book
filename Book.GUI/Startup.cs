@@ -33,7 +33,15 @@ namespace BookShop.GUI
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+
+
             services.AddControllersWithViews();
+
+            services.AddMvc()
+                .AddNewtonsoftJson();
+
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -19,6 +19,11 @@ namespace BookShop.DAL.Repositories
 
             if (item != null)
             {
+                if (item.ImageUrl != null)
+                {
+                    item.ImageUrl = book.ImageUrl;
+                }
+
                 item.ISBN = book.ISBN;
                 item.Title = book.Title;
                 item.Price = book.Price;
@@ -26,11 +31,13 @@ namespace BookShop.DAL.Repositories
                 item.Edition = book.Edition;
                 item.AvailableQuantity = book.AvailableQuantity;
                 item.Description = book.Description;
+                item.ImageUrl = book.ImageUrl;
                 item.BookAuthors = book.BookAuthors;
                 item.BookGenres = book.BookGenres;
                 item.OrderDetails = book.OrderDetails;
             }
 
         }
+
     }
 }
