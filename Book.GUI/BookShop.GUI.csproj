@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Book.DAL\BookShop.DAL.csproj" />
+    <ProjectReference Include="..\Book.Models\BookShop.Models.csproj" />
+  </ItemGroup>
+
 </Project>
