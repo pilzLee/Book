@@ -1,10 +1,13 @@
 ﻿using BookShop.DAL.Repositories.IRepositories;
 using BookShop.Models.ViewModels;
+using BookShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.GUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticRole.RoleAdmin + "," + StaticRole.RoleEmployee)]
     public class GenreController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

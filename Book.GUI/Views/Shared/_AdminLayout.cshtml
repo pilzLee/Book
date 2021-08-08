@@ -76,6 +76,12 @@
                             <p>Publiser</p>
                         </a>
                     </li>
+                    <li class="nav-item pb-3">
+                        <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">
+                            <i class="fas fa-user"></i>
+                            <p>User</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -103,6 +109,7 @@
                         </ul>
                     </div>
                 </div>
+                <partial name="_LoginPartial" />
             </nav>
             <!-- End Navbar -->
             <div class="content">

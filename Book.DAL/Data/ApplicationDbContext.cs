@@ -43,5 +43,6 @@ namespace BookShop.DAL.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<BookGenre> BookGenres { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using BookShop.DAL.Repositories.IRepositories;
 using BookShop.Models.ViewModels;
+using BookShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +12,7 @@ using System.Linq;
 namespace BookShop.GUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticRole.RoleAdmin + "," + StaticRole.RoleEmployee)]
     public class BookController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

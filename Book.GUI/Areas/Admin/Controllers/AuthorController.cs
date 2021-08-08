@@ -1,10 +1,13 @@
 ﻿using BookShop.DAL.Repositories.IRepositories;
 using BookShop.Models.ViewModels;
+using BookShop.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.GUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticRole.RoleAdmin + "," + StaticRole.RoleEmployee)]
     public class AuthorController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -22,14 +25,14 @@ namespace BookShop.GUI.Areas.Admin.Controllers
         public IActionResult Upsert(int? id)
         {
             var author = new Author();
-            if (id==null)
+            if (id == null)
             {
                 return View(author);
             }
 
             author = _unitOfWork.Author.Get(id.GetValueOrDefault());
 
-            if (author==null)
+            if (author == null)
             {
                 return NotFound();
             }
@@ -63,14 +66,14 @@ namespace BookShop.GUI.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
             var authors = _unitOfWork.Author.GetAll();
-            return Json(new { data = authors});
+            return Json(new { data = authors });
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
             var author = _unitOfWork.Author.Get(id);
-            if(author == null)
+            if (author == null)
             {
                 return Json(new { success = false, message = "Error while deleting!" });
             }
