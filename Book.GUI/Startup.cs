@@ -1,9 +1,11 @@
 using BookShop.DAL.Data;
 using BookShop.DAL.Repositories;
 using BookShop.DAL.Repositories.IRepositories;
+using BookShop.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,12 +30,45 @@ namespace BookShop.GUI
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<EmailOptions>(Configuration);
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+
+
             services.AddControllersWithViews();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            // this service for google and facebook
+            services.AddAuthentication()
+                .AddFacebook(options =>
+                {
+                    options.AppId = "363421532041622";
+                    options.AppSecret = "d962f55eeef5d74dfd5e3a3da21fa13f";
+                });
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "134776588247-qvj96gq03u857sr0u1fhvpf0i6qtt2b5.apps.googleusercontent.com";
+                    options.ClientSecret = "YG9Nyan5CDA14W4F95ARLPIL";
+                });
+
+            services.AddMvc()
+                .AddNewtonsoftJson();
+
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

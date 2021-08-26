@@ -12,6 +12,7 @@ namespace BookShop.DAL.Repositories.IRepositories
         IOrderDetailRepository OrderDetail { get; }
         IOrderRepository Order { get; }
         IPublisherRepository Publisher { get; }
+        IApplicationUserRepository ApplicationUser { get; }
 
         void Save();
     }

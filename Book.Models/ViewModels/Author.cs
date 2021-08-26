@@ -11,6 +11,6 @@ namespace BookShop.Models.ViewModels
         public int Id { get; set; }
         [Required]
         public string FullName { get; set; }
-        public IList<BookAuthor> BookAuthors { get; set; }
+        public virtual IList<BookAuthor> BookAuthors { get; set; }
     }
 }

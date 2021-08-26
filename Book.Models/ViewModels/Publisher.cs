@@ -10,6 +10,6 @@ namespace BookShop.Models.ViewModels
         [Key]
         public int Id { get; set; }
         public string PublisherName { get; set; }
-        public IList<Book> Books { get; set; }
+        //public virtual IList<Book> Books { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2>Genre List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-primary" asp-action="Upsert"><i class="fa fa-plus"></i>Create new genre</a>
+    </div>
+</div>
+
+<br />
+<div class="">
+    <table id="tblData" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Genre</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@section Scripts {
+<script src="~/js/genre.js"></script>
+}

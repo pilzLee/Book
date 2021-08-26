@@ -10,7 +10,15 @@ namespace BookShop.DAL.Repositories
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            Author = new AuthorRepository(_db);
+            BookAuthor = new BookAuthorRepository(_db);
+            BookGenre = new BookGenreRepository(_db);
+            Book = new BookRepository(_db);
             Genre = new GenreRepository(_db);
+            Order = new OrderRepository(_db);
+            OrderDetail = new OrderDetailRepository(_db);
+            Publisher = new PublisherRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_db);
         }
 
         public IAuthorRepository Author { get; private set; }
@@ -28,6 +36,8 @@ namespace BookShop.DAL.Repositories
         public IOrderRepository Order { get; private set; }
 
         public IPublisherRepository Publisher { get; private set; }
+
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
         public void Dispose()
         {

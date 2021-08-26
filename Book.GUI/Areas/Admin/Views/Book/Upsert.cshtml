@@ -1,0 +1,172 @@
+﻿@model BookShop.Models.ViewModels.BookVM;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var title = "Create book";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Book.Id != 0)
+        {
+            title = "Edit book";
+            <input type="hidden" asp-for="Book.Id" />
+        }
+        <div class="col-12 border-bottom">
+            <h2>@title</h2>
+        </div>
+
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Book.ISBN"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Book.ISBN" class="form-control" />
+                    <span asp-validation-for="Book.ISBN" class="text-danger"></span>
+                </div>
+            </div><div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Book.Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Book.Title" class="form-control" />
+                    <span asp-validation-for="Book.Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Book.Edition"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Book.Edition" class="form-control" />
+                    <span asp-validation-for="Book.Edition" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Book.Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Book.Price" class="form-control" />
+                    <span asp-validation-for="Book.Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Book.AvailableQuantity"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Book.AvailableQuantity" class="form-control" />
+                    <span asp-validation-for="Book.AvailableQuantity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Book.Description"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Book.Description" class="form-control"></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-4">
+                    Genres
+                </div>
+                <div class="col-8">
+
+                    @Html.ListBoxFor(x => x.SelectedGenres, Model.Genres,
+                        new
+                        {
+                            @class = "selectpicker form-control",
+                            @multiple = "true",
+                            @datalivesearch = "true",
+                            @dataselectedtextformat = "count > 5",
+                            @showmenuarrow="true",
+                            @liveSearch="true",
+                            @dataactionsbox = "true"
+                        })
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-4">
+                    Authors
+                </div>
+                <div class="col-8">
+
+                    @Html.ListBoxFor(x => x.SelectedAuthors, Model.Authors,
+                        new
+                        {
+                            @class = "selectpicker form-control",
+                            @multiple = "true",
+                            @datalivesearch = "true",
+                            @dataselectedtextformat = "count > 5",
+                            @showmenuarrow="true",
+                            @liveSearch="true",
+                            @dataactionsbox = "true"
+                        })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Publisher
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(a => a.Book.PublisherId, Model.Publishers, "-Select a publisher", new { @class = "form-control" })
+                    <span asp-validation-for="Book.PublisherId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row pl-3">
+                <div class="col-4">Image</div>
+                <div class="col-8 ml-0 pl-0">
+                    <input type="file" name="files" id="uploadFile" multiple class="form-control" />
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group row">
+                <div class="offset-4 col-8">
+                    @if (Model.Book.Id != 0)
+                    {
+                        <partial name="_EditAndBackButton" model="Model.Book.Id" />
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInputFile()" class="btn btn-primary form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success form-control">Back</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (Model.Book.Id != 0)
+        {
+            <div class="col-3 offset-1">
+                <img src="@Model.Book.ImageUrl" class="rounded" width="100" height="100" />
+            </div>
+        }
+    </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function validateInputFile() {
+            if (document.getElementById("uploadFile").value == "") {
+                swal("Error", "Please select an image!", "error");
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

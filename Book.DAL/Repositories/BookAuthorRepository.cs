@@ -12,5 +12,18 @@ namespace BookShop.DAL.Repositories
         {
             _db = db;
         }
+
+        public void RemoveAllBookAuthorOfABook(int bookId)
+        {
+            var bookAuthors = _db.BookAuthors.Where(b => b.BookId == bookId);
+
+            if (bookAuthors != null)
+            {
+                foreach (var item in bookAuthors)
+                {
+                    _db.BookAuthors.Remove(item);
+                }
+            }
+        }
     }
 }
